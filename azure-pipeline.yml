@@ -24,7 +24,7 @@ stages:
 - stage: Build
   displayName: Build and Push stage
   jobs:  
-  - job: Build and Test
+  - job: Build
     displayName: Build
     pool:
       vmImage: $(vmImageName)
