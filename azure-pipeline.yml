@@ -10,10 +10,9 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '94580c45-fae2-49f1-a6ca-a9411edfebbd'
-  imageRepository: 'postgres'
-  containerName: 'pg_test'
-  containerRegistry: 'tomrg.azurecr.io'
+  dockerRegistryServiceConnection: '74b93da5-146c-4f24-9dfa-7eaf548e53dd'
+  imageRepository: 'devopslifterdockerpostgres'
+  containerRegistry: 'tomfinch.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
   
