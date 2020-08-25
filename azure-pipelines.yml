@@ -53,17 +53,11 @@ stages:
           
           inspec exec postgres-tests -t docker://$id --chef-license=accept-no-persist --input-file inputs.yml
     - task: Docker@2
-      displayName: Push image to container registry
+      displayName: Push image
       inputs:
-          containerregistrytype: 'Container Registry'
-          dockerRegistryConnection: 'gcr-publish'
-          action: 'Push an image'
-          imageName: '$(DockerImageName):$(Build.BuildId)'
-          # repository: $(imageRepository)
-        # command: buildAndPush
-        # repository: $(imageRepository)
-        # dockerfile: $(dockerfilePath)
-        # containerRegistry: $(dockerRegistryServiceConnection)
-        # tags: |
-        #   $(tag)
-        #   latest
+        containerRegistry: gcr-publish
+        repository: $(DockerImageName)
+        command: push
+        tags: |
+          latest
+          
