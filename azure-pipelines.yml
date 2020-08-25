@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: '74b93da5-146c-4f24-9dfa-7eaf548e53dd'
   imageRepository: 'devopslifterdockerpostgres'
   containerName: 'pg_test'
-  containerRegistry: 'tomfinch.azurecr.io'
+  # containerRegistry: 'tomfinch.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   BuildConfiguration: 'Release'
   DockerImageName: 'chef-sa/pg_test'
@@ -59,7 +59,7 @@ stages:
           dockerRegistryConnection: 'gcr-publish'
           action: 'Push an image'
           imageName: '$(DockerImageName):$(Build.BuildId)'
-          repository: $(imageRepository)
+          # repository: $(imageRepository)
         # command: buildAndPush
         # repository: $(imageRepository)
         # dockerfile: $(dockerfilePath)
