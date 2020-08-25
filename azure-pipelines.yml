@@ -59,6 +59,7 @@ stages:
           dockerRegistryConnection: 'gcr-publish'
           action: 'Push an image'
           imageName: '$(DockerImageName):$(Build.BuildId)'
+          repository: $(imageRepository)
         # command: buildAndPush
         # repository: $(imageRepository)
         # dockerfile: $(dockerfilePath)
