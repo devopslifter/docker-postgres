@@ -15,6 +15,8 @@ variables:
   containerName: 'pg_test'
   containerRegistry: 'tomfinch.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  BuildConfiguration: 'Release'
+  DockerImageName: 'chef-sa/pg_test'
   tag: '$(Build.BuildId)'
   
   # Agent VM image name
