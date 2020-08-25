@@ -53,10 +53,15 @@ stages:
     - task: Docker@2
       displayName: Push image to container registry
       inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
-          latest
+        # command: buildAndPush
+        # repository: $(imageRepository)
+        # dockerfile: $(dockerfilePath)
+        # containerRegistry: $(dockerRegistryServiceConnection)
+        # tags: |
+        #   $(tag)
+        #   latest
+          inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryConnection: 'gcr-publish'
+    action: 'Push an image'
+    imageName: '$(DockerImageName):$(Build.BuildId)'
