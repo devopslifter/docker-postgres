@@ -13,13 +13,13 @@ variables:
   dockerRegistryServiceConnection: '74b93da5-146c-4f24-9dfa-7eaf548e53dd'
   imageRepository: 'devopslifterdockerpostgres'
   containerName: 'pg_test'
-  # containerRegistry: 'tomfinch.azurecr.io'
+  containerRegistry: 'tomfinch.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   BuildConfiguration: 'Release'
   DockerImageName: 'chef-sa/pg_test'
   tag: '$(Build.BuildId)'
   
-  # Agent VM image name
+# Agent VM image name
   vmImageName: 'ubuntu-latest'
 
 stages:
@@ -53,11 +53,13 @@ stages:
           
           inspec exec postgres-tests -t docker://$id --chef-license=accept-no-persist --input-file inputs.yml
     - task: Docker@2
-      displayName: Push image
+      displayName: Push image to container registry
       inputs:
-        containerRegistry: gcr-publish
-        repository: $(DockerImageName)
-        command: push
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
+          $(tag)
           latest
           
